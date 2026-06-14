@@ -41,9 +41,12 @@ const StudentLayout = () => {
       >
         {/* Logo */}
         <div className="flex items-center gap-3 px-6 py-5 border-b border-gray-200 dark:border-gray-700">
-          <div className="w-9 h-9 bg-primary-700 rounded-lg flex items-center justify-center text-white font-bold text-sm">WU</div>
+          <div className="w-9 h-9 rounded-lg overflow-hidden flex-shrink-0 bg-primary-700">
+            <img src="/logo.png" alt="WU" className="w-full h-full object-contain" onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }} />
+            <span className="hidden w-full h-full items-center justify-center text-white font-bold text-sm">WU</span>
+          </div>
           <div>
-            <p className="text-sm font-semibold text-gray-900 dark:text-white leading-tight">Wachemo</p>
+            <p className="text-sm font-semibold text-gray-900 dark:text-white leading-tight">Wachemo University</p>
             <p className="text-xs text-gray-400">Non-Cafeteria System</p>
           </div>
         </div>

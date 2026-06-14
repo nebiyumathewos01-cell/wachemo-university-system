@@ -26,6 +26,10 @@ const Register = () => {
     if (form.password.length < 6) e.password = 'Password must be at least 6 characters';
     if (form.password !== form.confirmPassword) e.confirmPassword = 'Passwords do not match';
     if (!form.studentId.trim()) e.studentId = 'Student ID is required';
+    // Wachemo University ID format: wuc + digits e.g. wuc170167
+    if (!/^wuc\d{6,}$/i.test(form.studentId.trim())) {
+      e.studentId = 'Invalid format. Use WUC format e.g. wuc170167';
+    }
     if (!form.department) e.department = 'Department is required';
     if (!form.year) e.year = 'Year of study is required';
     if (!form.phone.trim()) e.phone = 'Phone number is required';
@@ -68,8 +72,9 @@ const Register = () => {
       <div className="w-full max-w-2xl">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-lg mb-4">
-            <span className="text-primary-900 font-bold text-xl">WU</span>
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-white rounded-2xl shadow-lg mb-4 overflow-hidden">
+            <img src="/logo.png" alt="WU" className="w-full h-full object-contain" onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }} />
+            <span className="hidden w-full h-full items-center justify-center text-primary-900 font-bold text-xl">WU</span>
           </div>
           <h1 className="text-2xl font-bold text-white">Student Registration</h1>
           <p className="text-primary-200 text-sm mt-1">Wachemo University Non-Cafeteria System</p>
@@ -113,7 +118,7 @@ const Register = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {field('studentId', 'Student ID Number', 'text', 'e.g. WU/ET/123/14')}
+              {field('studentId', 'Student ID Number', 'text', 'e.g. wuc170167')}
               {field('phone', 'Phone Number', 'tel', '0912345678')}
             </div>
 

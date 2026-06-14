@@ -41,7 +41,10 @@ const AdminLayout = () => {
       >
         {/* Logo */}
         <div className="flex items-center gap-3 px-6 py-5 border-b border-primary-800">
-          <div className="w-9 h-9 bg-white rounded-lg flex items-center justify-center text-primary-900 font-bold text-sm">WU</div>
+          <div className="w-9 h-9 rounded-lg overflow-hidden flex-shrink-0 bg-white">
+            <img src="/logo.png" alt="WU" className="w-full h-full object-contain" onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }} />
+            <span className="hidden w-full h-full items-center justify-center text-primary-900 font-bold text-sm">WU</span>
+          </div>
           <div>
             <p className="text-sm font-semibold text-white leading-tight">Wachemo University</p>
             <p className="text-xs text-primary-300">Admin Panel</p>

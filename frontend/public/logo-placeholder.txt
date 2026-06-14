@@ -1,0 +1,4 @@
+Place your Wachemo University logo here as:
+  logo.png  (recommended 200x200px or square)
+
+Then it will automatically appear in the app header and login/register pages.

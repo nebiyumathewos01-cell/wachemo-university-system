@@ -4,6 +4,8 @@ import { useAuth } from '../../context/AuthContext';
 import { loginUser } from '../../services/api';
 import toast from 'react-hot-toast';
 
+import Logo from '../../components/common/Logo';
+
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -59,7 +61,10 @@ const Login = () => {
       <div style={s.box}>
         {/* Logo */}
         <div style={s.logo}>
-          <div style={s.logoBox}>WU</div>
+          <div style={s.logoBox}>
+            <img src="/logo.png" alt="WU" style={{ width: '100%', height: '100%', objectFit: 'contain' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }} />
+            <span style={{ display: 'none', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 20 }}>WU</span>
+          </div>
           <h1 style={s.h1}>Welcome Back</h1>
           <p style={s.sub}>Wachemo University · Non-Cafeteria System</p>
         </div>

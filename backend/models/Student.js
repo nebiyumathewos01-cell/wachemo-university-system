@@ -14,6 +14,7 @@ const studentSchema = new mongoose.Schema(
       unique: true,
       trim: true,
       uppercase: true,
+      match: [/^WUC\d{6,}$/i, 'Student ID must be in WUC format e.g. wuc170167'],
     },
     department: {
       type: String,
