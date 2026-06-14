@@ -91,10 +91,30 @@ app.use((req, res) => {
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📍 API: http://localhost:${PORT}/api`);
   console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+
+  // Auto-seed admin on first run
+  try {
+    const User = require('./models/User');
+    const adminEmail = process.env.ADMIN_EMAIL || 'admin@wachemo.edu.et';
+    const existing = await User.findOne({ email: adminEmail });
+    if (!existing) {
+      await User.create({
+        fullName: 'System Administrator',
+        email: adminEmail,
+        password: process.env.ADMIN_PASSWORD || 'Admin@123456',
+        role: 'admin',
+      });
+      console.log(`✅ Admin seeded: ${adminEmail}`);
+    } else {
+      console.log(`ℹ️ Admin already exists: ${adminEmail}`);
+    }
+  } catch (err) {
+    console.error('Auto-seed error:', err.message);
+  }
 });
 
 module.exports = app;
