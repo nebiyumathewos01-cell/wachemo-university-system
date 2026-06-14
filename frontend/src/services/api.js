@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : '/api',
+  baseURL: 'https://wachemo-university-system-backend.onrender.com/api',
   headers: { 'Content-Type': 'application/json' },
 });
 
